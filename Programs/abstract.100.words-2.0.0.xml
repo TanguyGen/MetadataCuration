@@ -7,6 +7,7 @@
   <level>REQUIRED</level>
   <environment>rscript</environment>
   <code><![CDATA[
+  print(nchar(abstract))
     if (nchar(abstract) == 0) {
       status <- "FAILURE"
       message <- "No abstract sections were found."
