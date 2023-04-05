@@ -11,3 +11,9 @@ results
 checkFile <- "Publication_date_check.xml"
 results <- runCheck(checkFile, metadataFile)
 results
+
+checkFile <- "Keywords_and_control.xml"
+results <- runCheck(checkFile, metadataFile)
+results
+
+
