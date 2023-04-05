@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
   <mdq:check xmlns:mdq="https://nceas.ucsb.edu/mdqe/v1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://nceas.ucsb.edu/mdqe/v1 ../schemas/schema1.xsd">
-    <id>Originator.presence</id>
+    <id>CreatorsID.presence</id>
     <name>Presence of Originators</name>
-    <description>Keywords should be present</description>
-    <type>discovery</type>  
-    <level>RECOMMENDED</level>
+    <description>Creators ID should be present</description>
+    <type>findable</type>  
+    <level>Required</level>
     <environment>rscript</environment>
     <code><![CDATA[
-      # Check that <keyword> section(s) are presents for the dataset.
       if(CreatorsID!=0) {
         status <- "FAILURE"
         message <- paste0(CreatorsID," creator(s) are missing their IDs.")
