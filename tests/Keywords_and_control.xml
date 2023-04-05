@@ -9,7 +9,7 @@
     <code><![CDATA[
       # Check that <keyword> section(s) are presents for the dataset.
       if(KeywordPresence==0) {
-        status <- "WARNING"
+        status <- "FAILURE"
         message <- "Keywords are missing."
       } else if (KeywordDef!=0) {
         status <- "WARNING"
