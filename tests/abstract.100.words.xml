@@ -15,7 +15,7 @@
       message <- "More than one abstract section is present, only one is allowed."
     }else if (class(abstract)!="character"){
       status <- "FAILURE"
-      message <- "The data type for the abstract is incorrect, it should be written in character"
+      message <- "The data type for the abstract is incorrect, it should be written in character."
     } else {
       library(stringr)
       # Trim whitespace, split abstract on whitespace
