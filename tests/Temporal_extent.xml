@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+  <mdq:check xmlns:mdq="https://nceas.ucsb.edu/mdqe/v1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://nceas.ucsb.edu/mdqe/v1 ../schemas/schema1.xsd">
+    <id>Spatial_Extent</id>
+    <name>Presence of a Time Coverage</name>
+    <description>A temporal extent is recommended</description>
+    <type>discovery</type>  
+    <level>RECOMMENDED</level>
+    <environment>rscript</environment>
+    <code><![CDATA[
+      if(!TemporalExtent) {
+        status <- "WARNING"
+        message <- "Temporal extent is missing."
+      } else if (TemporalBegin>Sys.Date() | TemporalEnd>Sys.Date() | TemporalBegin>TemporalEnd){
+        status <- "WARNING"
+        message <- "Temporal coverage seem wrong or/and taking place in the future"
+      }else {
+        status <- "SUCCESS"
+        message <- "A temporal extent is present and is valid."
+      }
+      mdq_result <- list(status = status,
+                         output = list(list(value = message)))
+    ]]></code>
+    <selector>
+    <name>TemporalExtent</name>
+    <xpath>boolean(/*[local-name() = 'eml']/dataset/coverage/temporalCoverage) </xpath>
+    </selector>
+    <selector>
+    <name>TemporalBegin</name>
+    <xpath>(/*[local-name() = 'eml']/dataset/coverage/temporalCoverage//beginDate/calendarDate) </xpath>
+    </selector>
+    <selector>
+    <name>TemporalEnd</name>
+    <xpath>(/*[local-name() = 'eml']/dataset/coverage/temporalCoverage//endDate/calendarDate) </xpath>
+    </selector>
+    <dialect>
+    <name>Ecological Metadata Language</name>
+    <xpath>boolean(/*[local-name() = 'eml'])</xpath>
+    </dialect>
+    </mdq:check>
