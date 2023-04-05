@@ -13,6 +13,9 @@
     } else if (length(abstract) > 1) {
       status <- "FAILURE"
       message <- "More than one abstract section is present, only one is allowed."
+    }else if (class(abstract)!="character"){
+      status <- "FAILURE"
+      message <- "The data type for the abstract is incorrect, it should be written in character"
     } else {
       library(stringr)
       # Trim whitespace, split abstract on whitespace
@@ -22,10 +25,10 @@
 
       if (length(tokens) >= 100) {
         status <- "SUCCESS"
-        message <- paste0("The abstract is ", length(tokens), " word(s) long which is sufficient.")
+        message <- paste0("The abstract is valid and is ", length(tokens), " word(s) long which is sufficient.")
       } else {
-        status <- "FAILURE"
-        message <- paste0("The abstract is only ", length(tokens), " word(s) long but 100 or more is requried.")
+        status <- "WARNING"
+        message <- paste0("The abstract is only ", length(tokens), " word(s) long but 100 or more is adviced.")
       }
     }
 
@@ -34,30 +37,10 @@
   ]]></code>
    <selector>
       <name>abstract</name>
-      <xpath>(/MD_Metadata/identificationInfo/*/abstract) | (/*/identificationInfo/*/abstract)| (/*[local-name() = 'eml']/dataset/abstract) </xpath>
+      <xpath>(/*[local-name() = 'eml']/dataset/abstract) </xpath>
    </selector>
-   <dialect>
-      <name>DataCite 3.1</name>
-      <xpath>boolean(/*[local-name() = 'resource'])</xpath>
-   </dialect>
-   <dialect>
-      <name>Dryad Data Package and Data File Modules</name>
-      <xpath>boolean(/*[local-name() = 'DryadDataFile or local-name() = 'DryadDataPackage'])</xpath>
-   </dialect>
    <dialect>
       <name>Ecological Metadata Language</name>
       <xpath>boolean(/*[local-name() = 'eml'])</xpath>
-   </dialect>
-   <dialect>
-      <name/>
-      <xpath>boolean(/*[local-name() = ''])</xpath>
-   </dialect>
-   <dialect>
-      <name>ISO 19115 and ISO 19115-2 / ISO 19139 and ISO 19139-2</name>
-      <xpath>boolean(/*[local-name() = 'MI_Metadata' or local-name() = 'MD_Metadata'])</xpath>
-   </dialect>
-   <dialect>
-      <name>ISO 19115-1 / ISO 19115-3</name>
-      <xpath>boolean(/*[local-name() = 'MD_Metadata'])</xpath>
    </dialect>
 </mdq:check>
