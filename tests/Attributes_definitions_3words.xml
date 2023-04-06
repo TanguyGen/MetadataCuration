@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+  <mdq:check xmlns:mdq="https://nceas.ucsb.edu/mdqe/v1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://nceas.ucsb.edu/mdqe/v1 ../schemas/schema1.xsd">
+    <id>Attribute.definition.3words</id>
+    <name>3 words definitions</name>
+    <description>Definitions should be at least 3 words long</description>
+    <type>Interoperable</type>  
+    <level>RECOMMENDED</level>
+    <environment>rscript</environment>
+    <code><![CDATA[
+    bool=TRUE
+    for (i in AttributeDefinition){
+      if (length(unlist(strsplit(i, "\\s+", perl=T)))<3){
+        bool=FALSE
+        status <- "WARNING"
+        message <- "Some attributes have a definition less than 3 words long"
+      }
+    }
+      if(bool==TRUE) {
+        status <- "SUCCESS"
+        message <- paste0("All ", length(AttributeDefinition)," attributes definitions are at least 3 words long")
+      }
+      mdq_result <- list(status = status,
+                         output = list(list(value = message)))
+    ]]></code>
+    <selector>
+    <name>AttributeDefinition</name>
+    <xpath>/*[local-name() = 'eml']/dataset//attributeList/attribute/attributeDefinition </xpath>
+    </selector>
+    <selector>
+    <name>AttributeName</name>
+    <xpath>/*[local-name() = 'eml']/dataset//attributeList/attribute/attributeName </xpath>
+    </selector>
+    <dialect>
+    <name>Ecological Metadata Language</name>
+    <xpath>boolean(/*[local-name() = 'eml'])</xpath>
+    </dialect>
+    </mdq:check>
+    

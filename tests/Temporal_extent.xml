@@ -7,18 +7,14 @@
     <level>RECOMMENDED</level>
     <environment>rscript</environment>
     <code><![CDATA[
+library(metadig)
       if(!TemporalExtent) {
-        status <- "WARNING"
-        message <- "Temporal extent is missing."
+        failure("Temporal extent is missing.")
       } else if (TemporalBegin>Sys.Date() | TemporalEnd>Sys.Date() | TemporalBegin>TemporalEnd){
-        status <- "WARNING"
-        message <- "Temporal coverage seem wrong or/and taking place in the future"
+        failure("Temporal coverage seem wrong or/and taking place in the future")
       }else {
-        status <- "SUCCESS"
-        message <- "A temporal extent is present and is valid."
+        success("A temporal extent is present and is valid.")
       }
-      mdq_result <- list(status = status,
-                         output = list(list(value = message)))
     ]]></code>
     <selector>
     <name>TemporalExtent</name>

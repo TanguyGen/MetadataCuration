@@ -7,15 +7,12 @@
     <level>RECOMMENDED</level>
     <environment>rscript</environment>
     <code><![CDATA[
+	library(metadig)
       if(!TaxonomicExtent) {
-        status <- "WARNING"
-        message <- "Taxonomic extent is missing."
+        failure("Taxonomic extent is missing.")
       } else {
-        status <- "SUCCESS"
-        message <- "A taxonomic extent is present."
+        success("A taxonomic extent is present.")
       }
-      mdq_result <- list(status = status,
-                         output = list(list(value = message)))
     ]]></code>
     <selector>
     <name>TaxonomicExtent</name>
