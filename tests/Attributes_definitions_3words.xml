@@ -12,7 +12,7 @@
       if (length(unlist(strsplit(i, "\\s+", perl=T)))<3){
         bool=FALSE
         status <- "WARNING"
-        message <- "Some attributes have a definition less than 3 words long"
+        message <- "Some attributes have a definition of less than 3 words long"
       }
     }
       if(bool==TRUE) {

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+  <mdq:check xmlns:mdq="https://nceas.ucsb.edu/mdqe/v1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://nceas.ucsb.edu/mdqe/v1 ../schemas/schema1.xsd">
+    <id>entity.description.present</id>
+    <name>Entity Description Present</name>
+    <description>Check that all entities have a description.</description>
+    <type>Interoperable</type>  
+    <level>REQUIRED</level>
+    <environment>rscript</environment>
+    <code><![CDATA[
+
+      if(entityType!=entityName) {
+        status <- "FAILURE"
+        message <-paste0(entityType-entityName," entities don't have a description")
+      } else {
+        status <- "SUCCESS"
+        message <-paste0("All ",entityType," entities have a description")
+      }
+      mdq_result <- list(status = status,
+                         output = list(list(value = message)))
+      
+    ]]></code>
+    <selector>
+    <name>entityType</name>
+    <xpath>count(
+    /eml/dataset/dataTable |
+    /eml/dataset/otherEntity |
+    /eml/dataset/spatialVector |
+    /eml/dataset/spatialRaster |
+    /eml/dataset/view)
+    </xpath>
+    </selector>
+       <selector>
+    <name>entityName</name>
+    <xpath>count(/eml/dataset/*/entityDescription)
+    </xpath>
+    </selector>
+    <dialect>
+    <name>Ecological Metadata Language</name>
+    <xpath>boolean(/*[local-name() = 'eml'])</xpath>
+    </dialect>
+    </mdq:check>
+    

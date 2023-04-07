@@ -8,11 +8,11 @@
   <environment>rscript</environment>
   <code><![CDATA[
     if (nchar(abstract) == 0) {
-      status <- "FAILURE"
-      message <- "No abstract sections were found."
+        status <- "FAILURE"
+        message <- "No abstract sections were found."
     } else if (length(abstract) > 1) {
-      status <- "FAILURE"
-      message <- "More than one abstract section is present, only one is allowed."
+        status <- "FAILURE"
+        message <- "More than one abstract section is present, only one is allowed."
     }else if (class(abstract)!="character"){
       status <- "FAILURE"
       message <- "The data type for the abstract is incorrect, it should be written in character."
@@ -31,9 +31,9 @@
         message <- paste0("The abstract is only ", length(tokens), " word(s) long but 100 or more is adviced.")
       }
     }
-
     mdq_result <- list(status = status,
-                       output = list(list(value = message)))
+                         output = list(list(value = message)))
+
   ]]></code>
    <selector>
       <name>abstract</name>

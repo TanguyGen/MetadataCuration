@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
   <mdq:check xmlns:mdq="https://nceas.ucsb.edu/mdqe/v1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://nceas.ucsb.edu/mdqe/v1 ../schemas/schema1.xsd">
-    <id>Attribute.definition</id>
-    <name>Definitions for attributes</name>
-    <description>Each attributes must have a definition</description>
+    <id>Attribute.Scale</id>
+    <name>Attribute Measurement Scale</name>
+    <description>Check that attributes have measurement scales</description>
     <type>discovery</type>  
-    <level>REQUIRED</level>
+    <level>RECOMMENDED</level>
     <environment>rscript</environment>
     <code><![CDATA[
-      if(Attributes-AttributesDefinitions>0) {
-        status <- "FAILURE"
-        message <-paste0(Attributes-AttributesDefinitions," attribute(s)(out of ",Attributes," attributes) don't have a definition")
+      if(Attributes-AttributeScale>0) {
+        status <- "WARNING"
+        message <-paste0(Attributes-AttributeScale," attribute(s) (out of ",Attributes," attributes) don't have a measurement scale")
       } else {
         status <- "SUCCESS"
-        message <-paste0("All ",Attributes," attributes have a definition")
+        message <-paste0("All ",Attributes," attributes have a measurement scale")
       }
       mdq_result <- list(status = status,
                          output = list(list(value = message)))
@@ -23,8 +23,8 @@
     <xpath>count(/*[local-name() = 'eml']/dataset//attributeList/attribute) </xpath>
     </selector>
     <selector>
-    <name>AttributesDefinitions</name>
-    <xpath>count(/*[local-name() = 'eml']/dataset//attributeList/attribute/attributeDefinition) </xpath>
+    <name>AttributeScale</name>
+    <xpath>count(/*[local-name() = 'eml']/dataset//attributeList/attribute/measurementScale) </xpath>
     </selector>
     <dialect>
     <name>Ecological Metadata Language</name>

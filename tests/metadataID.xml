@@ -7,15 +7,19 @@
   <level>REQUIRED</level>
   <environment>rscript</environment>
   <code><![CDATA[
-    library(metadig)
 
     if (length(DataID)<=0) {
-      failure("No metadata Identifier was found.")
+      status <- "FAILURE"
+      message <-"No metadata Identifier was found."
     } else if(length(DataID)!=1) {
-      failure("More than 1 metadata Identifier were found")
+      status <- "FAILURE"
+      message <-"More than 1 metadata Identifier were found"
     }else {
-      success(paste0("The metadata Identifier ", DataID," was found"))
+      status <- "SUCCESS"
+      message <-paste0("The metadata Identifier ", DataID," was found")
     }
+    mdq_result <- list(status = status,
+                         output = list(list(value = message)))
   ]]></code>
   <selector>
     <name>DataID</name>

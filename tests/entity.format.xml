@@ -1,30 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
   <mdq:check xmlns:mdq="https://nceas.ucsb.edu/mdqe/v1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://nceas.ucsb.edu/mdqe/v1 ../schemas/schema1.xsd">
-    <id>Attribute.definition</id>
-    <name>Definitions for attributes</name>
-    <description>Each attributes must have a definition</description>
-    <type>discovery</type>  
+    <id>entity.format.present</id>
+    <name>Entity Format Present</name>
+    <description>Check that all entities have a format.</description>
+    <type>Interoperable</type>  
     <level>REQUIRED</level>
     <environment>rscript</environment>
     <code><![CDATA[
-      if(Attributes-AttributesDefinitions>0) {
+
+      if(entityType!=entityFormat) {
         status <- "FAILURE"
-        message <-paste0(Attributes-AttributesDefinitions," attribute(s)(out of ",Attributes," attributes) don't have a definition")
+        message <-paste0(entityType-entityName," entities don't have a format specified")
       } else {
         status <- "SUCCESS"
-        message <-paste0("All ",Attributes," attributes have a definition")
+        message <-paste0("All ",entityType," entities have a format")
       }
       mdq_result <- list(status = status,
                          output = list(list(value = message)))
-
+      
     ]]></code>
     <selector>
-    <name>Attributes</name>
-    <xpath>count(/*[local-name() = 'eml']/dataset//attributeList/attribute) </xpath>
+    <name>entityType</name>
+    <xpath>count(
+    /eml/dataset/dataTable |
+    /eml/dataset/otherEntity |
+    /eml/dataset/spatialVector |
+    /eml/dataset/spatialRaster |
+    /eml/dataset/view)
+    </xpath>
     </selector>
     <selector>
-    <name>AttributesDefinitions</name>
-    <xpath>count(/*[local-name() = 'eml']/dataset//attributeList/attribute/attributeDefinition) </xpath>
+    <name>entityFormat</name>
+    <xpath>count(/eml/dataset/*/physical/dataFormat)
+    </xpath>
     </selector>
     <dialect>
     <name>Ecological Metadata Language</name>

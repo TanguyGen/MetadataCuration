@@ -10,16 +10,16 @@
     # Check that a <pubDate> section is present for the dataset.
     if(!pubDatePresent) {
       status <- "FAILURE"
-      message <- "The publication date is not present"
+      message <-"The publication date is not present"
     } else if (pubDate>Sys.Date()){
       status <- "FAILURE"
-      message <- paste0("The publication date ", pubDate," was found but is in the future.")
+        message <-paste0("The publication date ", pubDate," was found but is in the future.")
     } else{
       status <- "SUCCESS"
-      message <- paste0("The publication date ", pubDate," was found and is not in the future.")
+        message <-paste0("The publication date ", pubDate," was found and is not in the future.")
     }
     mdq_result <- list(status = status,
-                       output = list(list(value = message)))
+                         output = list(list(value = message)))
     ]]></code>
     <selector>
     <name>pubDatePresent</name>

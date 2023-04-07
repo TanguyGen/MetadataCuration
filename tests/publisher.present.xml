@@ -20,8 +20,8 @@
     <selector>
     <name>Distributioncontact</name>
     <xpath>/*[local-name() = 'eml']/*/associatedParty/role[RoleType='distributor']//text()[normalize-space()] |
-          /*[local-name() = 'eml']/*/contact/individualName/surName/text()[normalize-space()] |
-          /*[local-name() = 'eml']/*/contact/organizationName/text()[normalize-space()]</xpath>
+    /*[local-name() = 'eml']/*/contact/individualName/surName/text()[normalize-space()] |
+    /*[local-name() = 'eml']/*/contact/organizationName/text()[normalize-space()]</xpath>
     </selector>
     <dialect>
     <name>Ecological Metadata Language</name>

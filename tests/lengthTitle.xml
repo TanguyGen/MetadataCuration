@@ -2,24 +2,32 @@
   <mdq:check xmlns:mdq="https://nceas.ucsb.edu/mdqe/v1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://nceas.ucsb.edu/mdqe/v1 ../schemas/schema1.xsd">
     <id>Title.length</id>
     <name>Check of title presence and length</name>
-    <description>Check that the ressource title exist and is of length >6 and > 20 words</description>
+    <description>Check that the ressource title exist and is of length >6 and <20 words</description>
     <type>findable</type>  
     <level>REQUIRED</level>
     <environment>rscript</environment>
     <code><![CDATA[
-      library(metadig)
+
       if (length(Title) <= 0) {
-        failure("No title were found.")
+        status <- "FAILURE"
+        message <-"No title were found."
       } else {
       wordcount=length(unlist(strsplit(Title, "\\s+", perl=T)))
       if (wordcount<6){
-        failure(paste0("The title is to short (",wordcount,"words), it is recommended to be at minimum 6 words long"))
+        status <- "FAILURE"
+        message <-paste0("The title is to short (",wordcount,"words), it is recommended to be at minimum 6 words long")
       }
       else if (wordcount>20){
-        failure("The title is to long, it should be at maximum 20 words long")
+        status <- "FAILURE"
+        message <-"The title is to long, it should be at maximum 20 words long"
       }
-      else success("The title is present and has correct number of words")
+      else {
+      status <- "SUCCESS"
+      message <-"The title is present and is valid"
       }
+      }
+      mdq_result <- list(status = status,
+                         output = list(list(value = message)))
     ]]></code>
     <selector>
     <name>Title</name>

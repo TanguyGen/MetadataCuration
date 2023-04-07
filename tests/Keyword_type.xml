@@ -1,25 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
   <mdq:check xmlns:mdq="https://nceas.ucsb.edu/mdqe/v1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://nceas.ucsb.edu/mdqe/v1 ../schemas/schema1.xsd">
-    <id>keywords.presence</id>
-    <name>Presence of Keywords</name>
-    <description>Keywords are recommended</description>
+    <id>keywords.type</id>
+    <name>Presence of Keywords Types</name>
+    <description>Check that keyword types are presents for each keywords</description>
     <type>findable</type>  
-    <level>REQUIRED</level>
+    <level>Recommended</level>
     <environment>rscript</environment>
     <code><![CDATA[
-
-      # Check that <keyword> section(s) are presents for the dataset.
       if(KeywordPresence==0) {
         status <- "FAILURE"
-        message <-"Keywords are missing."
-      } else if (KeywordDef!=0) {
-        status <- "FAILURE"
-        message <-paste0(KeywordPresence," Keywords are present but ",KeywordDef," group(s) of keywords is/are not controlled (from a vocabulary).")
+        message <-"No Keywords are specified, it is not possible to check for keywords types."
+      } else if (KeywordType-KeywordPresence<=0) {
+        status <- "WARNING"
+        message <-paste0(KeywordPresence-KeywordType," keywords (out of ",KeywordPresence," Keywords) don't have a type specified")
       } else {
         status <- "SUCCESS"
-        message <-paste0("All " ,KeywordPresence," keywords are present and are controlled (from a vocabulary).")
+        message <-paste0("All ",KeywordPresence," keywords have a type specified")
       }
-      mdq_result <- list(status = status,
+    mdq_result <- list(status = status,
                          output = list(list(value = message)))
     ]]></code>
     <selector>
@@ -27,8 +25,8 @@
     <xpath>count(/*[local-name() = 'eml']/dataset//keyword) </xpath>
     </selector>
     <selector>
-    <name>KeywordDef</name>
-    <xpath>count(/*[local-name() = 'eml']/dataset/keywordSet)-count(/*[local-name() = 'eml']/dataset//keywordThesaurus) </xpath>
+    <name>KeywordType</name>
+    <xpath>count(/*[local-name() = 'eml']/dataset/Keyword/keywordType) </xpath>
     </selector>
     <dialect>
     <name>Ecological Metadata Language</name>
