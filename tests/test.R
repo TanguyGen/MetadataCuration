@@ -9,6 +9,7 @@ checkFile <- "abstract.100.words.xml"
 results <- runCheck(checkFile, metadataFile)
 results
 
+
 checkFile <- "Publication_date_check.xml"
 results <- runCheck(checkFile, metadataFile)
 results
@@ -37,7 +38,6 @@ results
 checkFile <- "entity.id.xml"
 results <- runCheck(checkFile, metadataFile)
 results
-
 
 
 checkFile <- "Taxonomic_extent.xml"
@@ -112,13 +112,46 @@ checkFile <- "entity.format.xml"
 results <- runCheck(checkFile, metadataFile)
 results
 
-#revoir entity ID
+checkFile <- "entity.id.xml"
+results <- runCheck(checkFile, metadataFile)
+results
 
-checkFile <- "resource.revisionDate.present.xml"
+checkFile <- "entity.id.type.xml"#à voir
 results <- runCheck(checkFile, metadataFile)
 results
 
 checkFile <- "RevisionCreationDate.xml" #étonnant car selon dataOne ils en ont
 results <- runCheck(checkFile, metadataFile)
+results
+
+checkFile <- "publisher.present.xml"
+results <- runCheck(checkFile, metadataFile)
+results
+
+checkFile <- "publisher.ID.xml"
+results <- runCheck(checkFile, metadataFile)
+results
+
+#Services dispo sur ISO mais pas sur EML ? Seul Iso sont rechechés dans les fonctions
+
+checkFile <- "domain.name.definition.xml"
+results <- runCheck(checkFile, metadataFile)
+results
+
+checkFile <- "method.present.xml"
+results <- runCheck(checkFile, metadataFile)
+results
+
+checkFile <- "trace.information.xml"
+results <- runCheck(checkFile, metadataFile)
+results
+
+
+checkFile <- "checksum.present.xml"
+results <- runCheck(checkFile, metadataFile)
+results
+
+checkFile <- "attribute.unit.xml"
+results <- runCheck(checkFile, metadataFile2)
 results
 

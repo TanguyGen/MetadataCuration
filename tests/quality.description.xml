@@ -7,37 +7,26 @@
     <level>REQUIRED</level>
     <environment>rscript</environment>
     <code><![CDATA[
-    library(ragtop)
-      if(length(EntityID)==0) {
+      if(!Quality) {
         status <- "FAILURE"
-        message <- "No entity ID were found"
-      }else if (is.blank(EntityID)){
-      status <- "FAILURE"
-      message <- "The entity ID is blank"
+        message <-"No quality description was found"
       } else {
         status <- "SUCCESS"
-        message <-paste0(length(EntityID)," entity ID were found out of ",Entity," entities")
+        message <-"A quality description has been found"
       }
       mdq_result <- list(status = status,
                          output = list(list(value = message)))
       
     ]]></code>
     <selector>
-    <name>EntityID</name>
+    <name>Quality</name>
     <xpath>
-    /eml/dataset/*/alternateIdentifier |
-    /eml/dataset/*[self::dataTable|self::spatialRaster|self::spatialVector|self::storedProcedure|self::view|self::otherEntity]/@id |
-    /eml/dataset/*/physical/distribution/online/url
+    boolean(/*/dataQualityInfo/DQ_DataQuality/report or
+          /eml/dataset/methods/methodStep/qualityControl/description or
+          /eml/dataset/methods/methodStep/qualityControl/description or
+          /eml/dataset/*/methods/methodStep/qualityControl/description or
+          /eml/dataset/attributeList/attribute/methods/methodStep/qualityControl/description)
     </xpath>
-    </selector>
-    <selector>
-    <name>Entity</name>
-    <xpath>count(
-    /eml/dataset/dataTable |
-    /eml/dataset/otherEntity |
-    /eml/dataset/spatialVector |
-    /eml/dataset/spatialRaster |
-    /eml/dataset/view) </xpath>
     </selector>
     <dialect>
     <name>Ecological Metadata Language</name>
