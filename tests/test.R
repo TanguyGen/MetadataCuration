@@ -39,6 +39,9 @@ checkFile <- "entity.id.xml"
 results <- runCheck(checkFile, metadataFile)
 results
 
+checkFile <- "entity.id.type.xml"
+results <- runCheck(checkFile, metadataFile)
+results
 
 checkFile <- "Taxonomic_extent.xml"
 results <- runCheck(checkFile, metadataFile)
@@ -56,7 +59,7 @@ checkFile <- "Attributes_definitions.xml"
 results <- runCheck(checkFile, metadataFile)
 results
 
-checkFile <- "attribute.scale.xml"
+checkFile <- "attribute.scale2.xml"
 results <- runCheck(checkFile, metadataFile)
 results
 
@@ -104,7 +107,7 @@ checkFile <- "ressource_license.xml"
 results <- runCheck(checkFile, metadataFile)
 results
 
-checkFile <- "Keyword_type.xml"
+checkFile <- "keyword.type.xml"
 results <- runCheck(checkFile, metadataFile)
 results
 
@@ -116,7 +119,7 @@ checkFile <- "entity.id.xml"
 results <- runCheck(checkFile, metadataFile)
 results
 
-checkFile <- "entity.id.type.xml"#à voir
+checkFile <- "entity.id.type.xml"
 results <- runCheck(checkFile, metadataFile)
 results
 
@@ -154,4 +157,3 @@ results
 checkFile <- "attribute.unit.xml"
 results <- runCheck(checkFile, metadataFile2)
 results
-
