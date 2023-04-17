@@ -1,18 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
   <mdq:check xmlns:mdq="https://nceas.ucsb.edu/mdqe/v1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://nceas.ucsb.edu/mdqe/v1 ../schemas/schema1.xsd">
-    <id>Spatial_Extent</id>
-    <name>Presence of a Geographical Coverage</name>
-    <description>A spatial extent is recommended</description>
+    <id>distribution.contact</id>
+    <name>Presence of Distribution Contacts</name>
+    <description>Check if Distribution Contacts are present </description>
     <type>discovery</type>  
     <level>RECOMMENDED</level>
     <environment>rscript</environment>
     <code><![CDATA[
+    #We remove all duplicated names
+    Distributioncontact=Distributioncontact[!duplicated(Distributioncontact)]
       if(length(Distributioncontact)==0){
         status <- "WARNING"
         message <- "There is no distribution contacts."
-      } else {
+      } else if (length(Distributioncontact)>3){
         status <- "SUCCESS"
-        message <- paste0(length(Distributioncontact[!duplicated(Distributioncontact)])," different distribution contacts were found: ", paste(Distributioncontact[!duplicated(Distributioncontact)],collapse='/'))
+        message <- paste0(length(Distributioncontact)," different distribution contacts were found: ", paste(Distributioncontact[1:3],collapse='/')," ...")
+      }else {
+        status <- "SUCCESS"
+        message <- paste0(length(Distributioncontact)," different distribution contacts were found: ", paste(Distributioncontact,collapse='/'))
       }
       mdq_result <- list(status = status,
                          output = list(list(value = message)))

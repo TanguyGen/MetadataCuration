@@ -7,32 +7,92 @@
     <level>REQUIRED</level>
     <environment>rscript</environment>
     <code><![CDATA[
-
-      if(entityType!=entityName) {
+      library(ragtop)
+      if(entitiesPresent==0) {
         status <- "FAILURE"
-        message <-paste0(entityType-entityName," entities don't have a description")
-      } else {
-        status <- "SUCCESS"
-        message <-paste0("All ",entityType," entities have a description")
+        message <- "No entity were found so it is impossible to get an entity description"
+      }else{
+        missing = c()
+        j=0
+        # If only a single value is returned (vs type "list"), then convert to a list
+        # for easier processing
+        if(length(Entitydescription)==1){
+          Entitydescription = list(Entitydescription)
+        }
+        if(length(entityNames)==1){
+          entityNames = list(entityNames)
+        }
+        for (i in 1:length(Entitydescriptionbool)){
+          if (!Entitydescriptionbool[i]){
+            descri=NA
+          }
+          else{
+            j=j+1
+            descri = Entitydescription[j]
+          }
+          name = entityNames[i]
+          if(is.null(name)){
+            name=i
+          }
+          if(is.blank(descri)){
+            missing=append(missing,name)
+          } 
+        }
+        if (length(missing) == 1){
+          message = paste0("This 1 entity (out of ",entitiesPresent, ") is missing a description: ", missing[1])
+          status = "FAILURE"
+        }else if(length(missing) > 1 & length(missing) < 5){
+          message = paste0("These ",length(missing)," entities (out of ",entitiesPresent,") are missing a description: ", paste(missing,collapse=","))
+          status="FAILURE"
+        }else if (length(missing) > 5){
+          message = paste0("These ",length(missing)," entities (out of ",entitiesPresent,") are missing a description: ", paste(missing[1:5],collapse=",")," and ",length(missing)-5," others")
+          status="FAILURE"
+        }else{
+          message = "All entities have a description specified."
+          status = "SUCCESS"
+        }
       }
+      
+      
+      
       mdq_result <- list(status = status,
                          output = list(list(value = message)))
       
     ]]></code>
     <selector>
-    <name>entityType</name>
-    <xpath>count(
+    <name>Entitydescription</name>
+    <xpath>
+    /eml/dataset/*/./entityDescription
+  </xpath>
+    </selector>
+    <selector>
+    <name>entityNames</name>
+    <xpath> /eml/dataset/*[self::dataTable|self::spatialRaster|self::spatialVector|self::storedProcedure|self::view|self::otherEntity]
+  </xpath>
+    <subSelector>
+    <name>name</name>
+    <xpath>./entityName</xpath>
+    </subSelector>
+    </selector>
+    <selector>
+    <name>Entitydescriptionbool</name>
+    <xpath>
     /eml/dataset/dataTable |
     /eml/dataset/otherEntity |
     /eml/dataset/spatialVector |
     /eml/dataset/spatialRaster |
-    /eml/dataset/view)
-    </xpath>
+    /eml/dataset/view</xpath>
+    <subSelector>
+    <name>description</name>
+    <xpath>
+    boolean(./entityDescription)
+  </xpath>
+    </subSelector>
     </selector>
-       <selector>
-    <name>entityName</name>
-    <xpath>count(/eml/dataset/*/entityDescription)
-    </xpath>
+    <selector>
+    <name>entitiesPresent</name>
+    <xpath>count(/eml/dataset/*[self::dataTable|self::spatialRaster|self::spatialVector|self::storedProcedure|self::view|self::otherEntity])
+  </xpath>
     </selector>
     <dialect>
     <name>Ecological Metadata Language</name>

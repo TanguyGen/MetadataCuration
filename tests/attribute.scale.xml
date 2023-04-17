@@ -7,7 +7,6 @@
     <level>RECOMMENDED</level>
     <environment>rscript</environment>
     <code><![CDATA[
-    print(attributeScalebool)
       library(ragtop)
       #Check first if attribute are present.
       if (!attributesPresent){

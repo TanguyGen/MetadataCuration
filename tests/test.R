@@ -1,8 +1,8 @@
 library(metadig)
-library(xml2)
 setwd("C:/Users/tangu/Desktop/Stage_meta/Curation/Curation/tests")
 
-metadataFile <- "Reef_Life_Survey_Fish_Mediterranean_sample.xml"
+metadataFile <-"edi.300.6.xml"
+  "Reef_Life_Survey_Fish_Mediterranean_sample.xml"
 metadataFile2 <- "Assessing_the_importance_of_field_margins_for_bat_species_and_communities_in_intensive_agricultural_landscapes_-_Data.xml"
 
 checkFile <- "abstract.100.words.xml"
@@ -14,7 +14,11 @@ checkFile <- "Publication_date_check.xml"
 results <- runCheck(checkFile, metadataFile)
 results
 
-checkFile <- "Keywords_and_control.xml"
+checkFile <- "keywords.presence.xml"
+results <- runCheck(checkFile, metadataFile)
+results
+
+checkFile <- "keywords.control.xml"
 results <- runCheck(checkFile, metadataFile)
 results
 
@@ -56,10 +60,10 @@ results <- runCheck(checkFile, metadataFile)
 results
 
 checkFile <- "Attributes_definitions.xml" 
-results <- runCheck(checkFile, metadataFile)
+results <- runCheck(checkFile, metadataFile2)
 results
 
-checkFile <- "attribute.scale2.xml"
+checkFile <- "attribute.scale.xml"
 results <- runCheck(checkFile, metadataFile)
 results
 
@@ -83,7 +87,7 @@ checkFile <- "lengthTitle.xml"
 results <- runCheck(checkFile, metadataFile)
 results
 
-checkFile <- "metadataID.xml" #étrange ID pour example 1
+checkFile <- "metadataID.xml"
 results <- runCheck(checkFile, metadataFile)
 results
 
@@ -137,7 +141,7 @@ results
 
 #Services dispo sur ISO mais pas sur EML ? Seul Iso sont rechechés dans les fonctions
 
-checkFile <- "domain.name.definition.xml"
+checkFile <- "domain.names.definition.xml"
 results <- runCheck(checkFile, metadataFile)
 results
 
@@ -157,3 +161,17 @@ results
 checkFile <- "attribute.unit.xml"
 results <- runCheck(checkFile, metadataFile2)
 results
+
+checkFile <- "entity.attribute.precision.xml"
+results <- runCheck(checkFile, metadataFile)
+results
+
+checkFile <- "provenance.processStepCode.present.xml"
+results <- runCheck(checkFile, metadataFile)
+results
+
+
+checkFile <- "ressource.landing.page.xml"
+results <- runCheck(checkFile, metadataFile)
+results
+

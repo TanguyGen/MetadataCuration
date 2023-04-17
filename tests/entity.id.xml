@@ -52,9 +52,6 @@
         status = "SUCCESS"
       }
   }
-      
-    
-        
   mdq_result <- list(status = status,
                          output = list(list(value = message)))
       

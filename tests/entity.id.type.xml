@@ -13,6 +13,7 @@
         message <- "No entity were found so impossible to get ID types"
       }else{
         missing = c()
+        j=0
         # If only a single value is returned (vs type "list"), then convert to a list
         # for easier processing
         if(length(EntityIDtype)==1){

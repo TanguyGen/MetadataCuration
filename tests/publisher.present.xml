@@ -1,28 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
   <mdq:check xmlns:mdq="https://nceas.ucsb.edu/mdqe/v1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://nceas.ucsb.edu/mdqe/v1 ../schemas/schema1.xsd">
-    <id>publisher.ID.present</id>
-    <name>Presence Publisher ID</name>
-    <description>Check that the publisher's ID is specified</description>
+    <id>publisher.present</id>
+    <name>Presence of a Publisher</name>
+    <description>Check that a publisher is specified</description>
     <type>accessible</type>  
-    <level>RECOMMENDED</level>
+    <level>REQUIRED</level>
     <environment>rscript</environment>
     <code><![CDATA[
       if(!PublisherPresent){
         status <- "FAILURE"
-        message <- "No publisher is specified so it is impossible to find an ID."
-      } else if (!PublisherIDPresent){
-        status <- "WARNING"
-        message <- "No publisher ID is specified"
+        message <- "No publisher is specified."
       } else {
         status <- "SUCCESS"
-        message <-paste0("The ressource publisher ID ",PublisherID, " was found")    
-        }
-      
-
+        message <- paste0("The ressource publisher '",Publisher, "' was found")
+      }
       mdq_result <- list(status = status,
                          output = list(list(value = message)))
     ]]></code>
-    <selector>
+        <selector>
     <name>PublisherPresent</name>
     <xpath>boolean(/*[local-name() = 'eml']/dataset/publisher/organizationName/text()[normalize-space()])</xpath>
     </selector>
@@ -30,6 +25,8 @@
     <name>Publisher</name>
     <xpath>/*[local-name() = 'eml']/dataset/publisher/organizationName/text()[normalize-space()]</xpath>
     </selector>
+
+
     <dialect>
     <name>Ecological Metadata Language</name>
     <xpath>boolean(/*[local-name() = 'eml'])</xpath>

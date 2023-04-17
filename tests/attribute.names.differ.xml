@@ -46,7 +46,7 @@ check <- function() {
   if(length(values) > 0) {
     return(list(status="FAILURE", values=list(value=sprintf("These data table descriptions attributes have identical names and definitions: %s", paste(sQuote(unlist(values)), collapse=", ")))))
   } else {
-    return(list(status="SUCCESS", values=list(value=sprintf("All data table attributes have valid definitions"))))
+    return(list(status="SUCCESS", values=list(value=sprintf("All data table attributes have definitions that differ from their names"))))
   }
 
   options("useFancyQuotes" = quoteStyle)
