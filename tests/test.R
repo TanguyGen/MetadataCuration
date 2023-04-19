@@ -4,6 +4,8 @@ setwd("C:/Users/tangu/Desktop/Stage_meta/Curation/Curation/tests")
 metadataFile <-"edi.300.6.xml"
   "Reef_Life_Survey_Fish_Mediterranean_sample.xml"
 metadataFile2 <- "Assessing_the_importance_of_field_margins_for_bat_species_and_communities_in_intensive_agricultural_landscapes_-_Data.xml"
+suite<-"Suite.xml"
+
 
 checkFile <- "abstract.100.words.xml"
 results <- runCheck(checkFile, metadataFile)
@@ -159,7 +161,7 @@ results <- runCheck(checkFile, metadataFile)
 results
 
 checkFile <- "attribute.unit.xml"
-results <- runCheck(checkFile, metadataFile2)
+results <- runCheck(checkFile, metadataFile)
 results
 
 checkFile <- "entity.attribute.precision.xml"
@@ -174,4 +176,4 @@ results
 checkFile <- "ressource.landing.page.xml"
 results <- runCheck(checkFile, metadataFile)
 results
-
+runSuite(suite,"C:/Users/tangu/Desktop/Stage_meta/Curation/Curation/tests",metadataFile)
