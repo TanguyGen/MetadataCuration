@@ -1,0 +1,56 @@
+library(shiny)
+library(xml2)
+library(metadig)
+library(ggplot2)
+library(broman)
+library(dplyr)
+dirXML = "C:/Users/tangu/Desktop/Stage_meta/Curation/Curation/tests/checks"
+suite = "C:/Users/tangu/Desktop/Stage_meta/Curation/Curation/tests/Suite.xml"
+
+# Define UI ----
+ui <- fluidPage(
+  tags$head(includeCSS("www/styles.css")),  
+  tags$head(tags$link(rel = "preconnect", href = "https://fonts.googleapis.com")),
+  tags$head(tags$link(rel = "preconnect", href = "https://fonts.gstatic.com")),
+  tags$head(tags$link(rel = "stylesheet", href="https://fonts.googleapis.com/css2?family=Manrope:wght@300&family=Roboto:wght@100&display=swap")) ,
+  withTags({
+    div(
+      class = "header",
+      checked = NA,
+      h1(img(width=200,src="https://www.pndb.fr/static/images/PNDB_logo_bandeau.png",class="topleft")),
+      h2("Assessment Report"),
+      h3("FAIR score")
+      
+      
+    )
+  }),
+  
+  sidebarLayout(
+    sidebarPanel(fileInput("file", h3("Select Metadata"))),
+    mainPanel(textOutput("text"),plotOutput("barchart",width = "60%"), plotOutput("piechart",width = "30%"),tableOutput("table"))
+  )
+)
+
+
+# Define server logic ----
+# Define server logic ----
+server <- function(input, output) {
+  output$barchart <- renderPlot({
+    try(Fair_scores(runSuite(suite, dirXML, input$file$datapath)), silent=TRUE)
+  })
+  
+  output$piechart <- renderPlot({
+    try(Fair_pie(runSuite(suite, dirXML, input$file$datapath)), silent=TRUE)
+  })
+  output$table <- renderTable({
+    if (is.character(input$file$datapath)){
+    Fair_table(runSuite(suite, dirXML, input$file$datapath))
+  }
+    
+  })
+}
+
+# Run the app ----d
+
+shinyApp(ui = ui, server = server)
+
