@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
   <mdq:check xmlns:mdq="https://nceas.ucsb.edu/mdqe/v1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://nceas.ucsb.edu/mdqe/v1 ../schemas/schema1.xsd">
-    <id>Spatial_Extent</id>
+    <id>spatial.extent.description</id>
     <name>Presence of textual description of the Geographical Coverage</name>
-    <description>A description of the Geographical Coverage is recommended</description>
-    <type>discovery</type>  
+    <description>Check if a description of the Geographical Coverage is present.</description>
+    <type>findable</type>  
     <level>RECOMMENDED</level>
     <environment>rscript</environment>
     <code><![CDATA[

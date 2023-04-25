@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <check>
-   <id>AttributeList</id>
+   <id>Attribute.List</id>
    <name>Attribute List</name>
    <description>Checks to see if at least one Attribute List concept exists.</description>
    <type>LTER_Integration</type>

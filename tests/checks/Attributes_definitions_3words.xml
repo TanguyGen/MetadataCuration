@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
   <mdq:check xmlns:mdq="https://nceas.ucsb.edu/mdqe/v1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://nceas.ucsb.edu/mdqe/v1 ../schemas/schema1.xsd">
-    <id>Attribute.definition.3words</id>
+    <id>attribute.definition.3words</id>
     <name>3 words definitions</name>
-    <description>Definitions should be at least 3 words long</description>
-    <type>Interoperable</type>  
+    <description>Check that all definitions are at least 3 words long</description>
+    <type>interoperable</type>  
     <level>RECOMMENDED</level>
     <environment>rscript</environment>
     <code><![CDATA[

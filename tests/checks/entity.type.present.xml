@@ -3,7 +3,7 @@
     <id>entity.type.present</id>
     <name>Entity Type Present</name>
     <description>Check that an entity type exists.</description>
-    <type>Interoperable</type>  
+    <type>interoperable</type>  
     <level>REQUIRED</level>
     <environment>rscript</environment>
     <code><![CDATA[

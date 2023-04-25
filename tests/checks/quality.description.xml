@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
   <mdq:check xmlns:mdq="https://nceas.ucsb.edu/mdqe/v1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://nceas.ucsb.edu/mdqe/v1 ../schemas/schema1.xsd">
-    <id>quality.description</id>
+    <id>quality.description.present</id>
     <name>Quality Descriptio</name>
-    <description>Check that every entity have an Identifier</description>
-    <type>findable</type>  
+    <description>Check that a quality description exist</description>
+    <type>reusable</type>  
     <level>REQUIRED</level>
     <environment>rscript</environment>
     <code><![CDATA[

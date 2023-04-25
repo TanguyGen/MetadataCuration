@@ -1,11 +1,12 @@
 library(metadig)
-setwd("C:/Users/tangu/Desktop/Stage_meta/Curation/Curation/tests")
+setwd("C:/Users/tangu/Desktop/Stage_meta/Curation/Curation/tests/checks")
 
-metadataFile <-"edi.300.6.xml"
-  "Reef_Life_Survey_Fish_Mediterranean_sample.xml"
-metadataFile2 <- "Assessing_the_importance_of_field_margins_for_bat_species_and_communities_in_intensive_agricultural_landscapes_-_Data.xml"
-suite<-"Suite.xml"
+metadataFile <-"../Reef_Life_Survey_Fish_Mediterranean_sample.xml"
+  
+metadataFile2 <- "../Assessing_the_importance_of_field_margins_for_bat_species_and_communities_in_intensive_agricultural_landscapes_-_Data.xml"
+suite<-"../Suite.xml"
 
+metadataFile3 <- "../edi.300.6.xml"
 
 checkFile <- "abstract.100.words.xml"
 results <- runCheck(checkFile, metadataFile)
@@ -57,7 +58,11 @@ checkFile <- "Spatial_extent_description.xml"
 results <- runCheck(checkFile, metadataFile)
 results
 
-checkFile <- "Distribution_contact.xml" #not on point
+checkFile <- "Distribution_contact.xml"
+results <- runCheck(checkFile, metadataFile)
+results
+
+checkFile <- "distribution.id.present.xml" 
 results <- runCheck(checkFile, metadataFile)
 results
 
@@ -81,7 +86,7 @@ checkFile <- "AttributeList.xml"
 results <- runCheck(checkFile, metadataFile)
 results
 
-checkFile <- "NoduplicateAttribute.xml"
+checkFile <- "attribute.unique.xml"
 results <- runCheck(checkFile, metadataFile)
 results
 
@@ -89,7 +94,11 @@ checkFile <- "lengthTitle.xml"
 results <- runCheck(checkFile, metadataFile)
 results
 
-checkFile <- "metadataID.xml"
+checkFile <- "metadata.id.present.xml"
+results <- runCheck(checkFile, metadataFile)
+results
+
+checkFile <- "metadata.id.resolvable.xml"
 results <- runCheck(checkFile, metadataFile)
 results
 
@@ -172,8 +181,16 @@ checkFile <- "provenance.processStepCode.present.xml"
 results <- runCheck(checkFile, metadataFile)
 results
 
-
 checkFile <- "ressource.landing.page.xml"
 results <- runCheck(checkFile, metadataFile)
 results
-runSuite(suite,"C:/Users/tangu/Desktop/Stage_meta/Curation/Curation/tests",metadataFile)
+
+checkFile <- "entity.format.nonproprietary.xml"
+results <- runCheck(checkFile, "C:/Users/tangu/Desktop/Stage_meta/Curation/Curation/tests/CoastWIBE_database_Coastal_Water_Interdisciplinarity_Biomarkers.xml")
+results
+
+checkFile <- "attribute.domain.present.xml"
+results <- runCheck(checkFile, metadataFile)
+results
+
+

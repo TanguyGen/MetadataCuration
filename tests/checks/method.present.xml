@@ -3,7 +3,7 @@
     <id>method.present</id>
     <name>Check method</name>
     <description>Check that the detailed method section is present</description>
-    <type>findable</type>  
+    <type>reusable</type>  
     <level>REQUIRED</level>
     <environment>rscript</environment>
     <code><![CDATA[

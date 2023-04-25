@@ -3,7 +3,7 @@
     <id>entity.names.present</id>
     <name>Entity names Present</name>
     <description>Check that all entities have a name.</description>
-    <type>Interoperable</type>  
+    <type>interoperable</type>  
     <level>REQUIRED</level>
     <environment>rscript</environment>
     <code><![CDATA[

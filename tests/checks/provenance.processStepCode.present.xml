@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
   <mdq:check xmlns:mdq="https://nceas.ucsb.edu/mdqe/v1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://nceas.ucsb.edu/mdqe/v1 ../schemas/schema1.xsd">
-    <id>provenance.processStepCode.present.1</id>
+    <id>provenance.processStepCode.present</id>
     <name>Provenance Process Step Code Present</name>
     <description>Check that provenance process step software is specified.</description>
-    <type>Reusable</type>
+    <type>reusable</type>
     <level>REQUIRED</level>
     <environment>rscript</environment>
     <code><![CDATA[

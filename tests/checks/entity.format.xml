@@ -3,7 +3,7 @@
     <id>entity.format.present</id>
     <name>Entity Format Present</name>
     <description>Check that all entities have a format.</description>
-    <type>Interoperable</type>  
+    <type>interoperable</type>  
     <level>REQUIRED</level>
     <environment>rscript</environment>
     <code><![CDATA[

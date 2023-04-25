@@ -3,7 +3,7 @@
   <id>check.abstract.100.words</id>
   <name>Abstract length</name>
   <description>Abstract should be at least 100 words long.</description>
-  <type>discovery</type>  
+  <type>findable</type>  
   <level>REQUIRED</level>
   <environment>rscript</environment>
   <code><![CDATA[

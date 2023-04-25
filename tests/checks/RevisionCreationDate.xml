@@ -3,7 +3,7 @@
     <id>Revision.Date</id>
     <name>Check Revision Date</name>
     <description>Check that a revision or creation date exists.</description>
-    <type>discovery</type>  
+    <type>findable</type>  
     <level>RECOMMENDED</level>
     <environment>rscript</environment>
     <code><![CDATA[

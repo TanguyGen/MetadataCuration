@@ -2,8 +2,8 @@
   <mdq:check xmlns:mdq="https://nceas.ucsb.edu/mdqe/v1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://nceas.ucsb.edu/mdqe/v1 ../schemas/schema1.xsd">
     <id>PubDate.Check</id>
     <name>Publication Date Check</name>
-    <description>Publication date should be present and not in the future</description>
-    <type>discovery</type>  
+    <description>Check if a publication date exists and is not in the future</description>
+    <type>findable</type>  
     <level>REQUIRED</level>
     <environment>rscript</environment>
     <code><![CDATA[
@@ -12,7 +12,7 @@
       status <- "FAILURE"
       message <-"The publication date is not present"
     } else if (pubDate>Sys.Date()){
-      status <- "FAILURE"
+      status <- "WARNING"
         message <-paste0("The publication date ", pubDate," was found but is in the future.")
     } else{
       status <- "SUCCESS"

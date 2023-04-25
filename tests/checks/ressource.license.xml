@@ -3,7 +3,7 @@
     <id>ressource.license.present</id>
     <name>Ressource Licence Present</name>
     <description>Check that a License is present.</description>
-    <type>Interoperable</type>  
+    <type>reusable</type>  
     <level>REQUIRED</level>
     <environment>rscript</environment>
     <code><![CDATA[

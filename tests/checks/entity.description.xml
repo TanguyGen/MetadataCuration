@@ -3,7 +3,7 @@
     <id>entity.description.present</id>
     <name>Entity Description Present</name>
     <description>Check that all entities have a description.</description>
-    <type>Interoperable</type>  
+    <type>reusable</type>  
     <level>REQUIRED</level>
     <environment>rscript</environment>
     <code><![CDATA[
